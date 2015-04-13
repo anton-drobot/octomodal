@@ -56,12 +56,31 @@
   -webkit-animation-timing-function: ease-out;
           animation-timing-function: ease-out;
 }
+.octomodal__wrapper {
+  overflow: hidden;
+  min-height: 100vh;
+  cursor: pointer;
+}
 .octomodal__container {
-  width: 50%;
+  width: 80%;
+  max-width: 1280px;
   margin-left: auto;
   margin-right: auto;
   position: relative;
   background: #fff;
+  cursor: default;
+}
+.octomodal__close-button {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#8c8c8c" d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"></path><path fill="#8c8c8c" d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"></path></svg>');
+  cursor: pointer;
+}
+.octomodal__close-button:hover {
+  background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#000" d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"></path><path fill="#000" d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"></path></svg>');
 }
 @-webkit-keyframes fade-in-scale-open {
   0% {

@@ -1,5 +1,5 @@
 /**
- * jQuery OctoModal 1.0.1-beta1
+ * jQuery OctoModal 1.0.1-beta2
  *
  * Copyright 2015 Anton Drobot me@antondrobot.ru.
  *
@@ -31,8 +31,8 @@
         removeTimeOut: 400,
         content: '',
         templates: {
-            main: '<div class="octomodal octomodal--open ${effect}"><div class="octomodal__container"><div class="octomodal__content">${content}</div>${closeButton}</div></div>',
-            closeButton: '<div class="octomodal__close-button">x</div>'
+            main: '<div class="octomodal octomodal--open ${effect}"><div class="octomodal__wrapper"><div class="octomodal__container"><div class="octomodal__content">${content}</div>${closeButton}</div></div></div>',
+            closeButton: '<div class="octomodal__close-button"></div>'
         }
     };
 
@@ -54,7 +54,7 @@
         }
 
         if (this.options.closeOnOverlay) {
-            this.data.closeSelectors.push('.octomodal');
+            this.data.closeSelectors.push('.octomodal__wrapper');
         }
     };
 

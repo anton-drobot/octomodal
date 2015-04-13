@@ -1,4 +1,113 @@
-html,
+html {
+    font-size: 10px;
+}
+
 body {
-    height: 100%;
+    background: #fefaf4;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 1.6rem;
+    color: #2b2b29;
+}
+
+p {
+    margin: 0 0 2rem 0;
+    &:last-child {
+        margin-bottom: 0;
+    }
+}
+
+$link-color: #368cda;
+$link-color-hover: #2f64b6;
+$link-color-active: #da2f0d;
+$link-underline-opacity: 0.3;
+
+a {
+    border-bottom: 1px solid rgba($link-color, $link-underline-opacity);
+    color: $link-color;
+    text-decoration: none;
+    transition: color 0.3s ease, border-color 0.3s ease;
+    &:hover {
+        border-bottom-color: rgba($link-color-hover, $link-underline-opacity);
+        color: $link-color-hover;
+        text-decoration: none;
+        transition: none;
+    }
+    &:active {
+        border-bottom-color: rgba($link-color-active, $link-underline-opacity);
+        color: $link-color-active;
+        text-decoration: none;
+        transition: none;
+    }
+}
+
+.wrapper {
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 60px;
+}
+
+.b-header {
+    margin-bottom: 60px;
+    padding: 60px 0;
+    background: #fdf3e5;
+    &__title {
+        margin: 0;
+        font-size: 4rem;
+        font-weight: normal;
+        line-height: 4rem;
+        text-align: center;
+    }
+}
+
+.b-content {
+    text-align: center;
+}
+
+.b-footer {
+    margin: 60px 0;
+    text-align: center;
+}
+
+.b-modal {
+    &--one {}
+    &--two {}
+    &--three {}
+    &__button {
+        margin-top: 20px;
+        text-align: center;
+    }
+
+}
+
+.b-button {
+    display: inline-block;
+    margin: 0;
+    padding: 1.5rem 2rem;
+    background: #ffd426;
+    border: none;
+    border-radius: 3px;
+    font-size: 2rem;
+    line-height: 2rem;
+    color: #94821c;
+    cursor: pointer;
+    transition: background 0.3s 0s linear, color 0.3s 0s linear;
+    &:hover {
+        background: #ffdd56;
+        color: lighten(#94821c, 5%);
+    }
+    &:active {
+        background: #ffe786;
+        color: lighten(#94821c, 10%);
+    }
+}
+
+pre {
+    margin-left: -2rem;
+    margin-right: -2rem;
+    padding: 2rem;
+    border: none;
+    border-radius: 3px;
+    background: #f7f7f7;
+    font-size: 1.6rem;
+    line-height: 2rem;
 }
