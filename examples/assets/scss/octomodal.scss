@@ -1,0 +1,106 @@
+.octomodal {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: rgba(0, 0, 0, 0.6);
+    opacity: 0;
+    overflow-y: auto;
+    transition: opacity 0.4s 0s ease-out;
+    &-fix {
+        overflow-y: hidden;
+    }
+    &--open {
+        opacity: 1;
+        .octomodal__container {}
+    }
+    &--close {
+        .octomodal__container {}
+    }
+    &--fade-in-scale {
+        &.octomodal--open {
+            .octomodal__container {
+                animation-duration: 0.4s;
+                animation-fill-mode: forwards;
+                animation-name: fade-in-scale-open;
+                animation-timing-function: ease-out;
+            }
+        }
+        &.octomodal--close {
+            .octomodal__container {
+                animation-duration: 0.4s;
+                animation-fill-mode: forwards;
+                animation-name: fade-in-scale-close;
+                animation-timing-function: ease-out;
+            }
+        }
+    }
+    &--slide-in-bottom {
+        &.octomodal--open {
+            .octomodal__container {
+                animation-duration: 0.4s;
+                animation-fill-mode: forwards;
+                animation-name: slide-in-bottom-open;
+                animation-timing-function: ease-out;
+            }
+        }
+        &.octomodal--close {
+            .octomodal__container {
+                animation-duration: 0.4s;
+                animation-fill-mode: forwards;
+                animation-name: slide-in-bottom-close;
+                animation-timing-function: ease-out;
+            }
+        }
+    }
+    &__container {
+        width: 50%;
+        margin-left: auto;
+        margin-right: auto;
+        position: relative;
+        background: #fff;
+    }
+
+    @keyframes fade-in-scale-open {
+        0% {
+            opacity: 0;
+            transform: scale3d(0.8, 0.8, 1);
+        }
+        100% {
+            opacity: 1;
+            transform: scale3d(1, 1, 1);
+        }
+    }
+    @keyframes fade-in-scale-close {
+        0% {
+            opacity: 1;
+            transform: scale3d(1, 1, 1);
+        }
+        100% {
+            opacity: 0;
+            transform: scale3d(0.8, 0.8, 1);
+        }
+    }
+
+    @keyframes slide-in-bottom-open {
+        0% {
+            opacity: 0;
+            transform: translate3d(0, 20%, 0);
+        }
+        100% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0);
+        }
+    }
+    @keyframes slide-in-bottom-close {
+        0% {
+            opacity: 1;
+            transform: translate3d(0, 0, 0) ;
+        }
+        100% {
+            opacity: 0;
+            transform: translate3d(0, 20%, 0);
+        }
+    }
+}
