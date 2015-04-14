@@ -1,5 +1,5 @@
 /**
- * jQuery OctoModal 1.0.1-beta2
+ * jQuery OctoModal 1.0.1-beta3
  *
  * Copyright 2015 Anton Drobot me@antondrobot.ru.
  *
@@ -12,11 +12,20 @@
  *  showCloseButton: true | false
  *  closeOnOverlay: true | false
  *  removeTimeOut: 400 | ...
+ *  //width: auto | small | medium | large ...
+ *  //widthBreakPoints: {...}
+ *  classes: '' | ,,,
  *  content: ...
  *
  *  Changelog:
  * - 1.0.1-beta1:
  *   - First version
+ * - 1.0.1-beta2
+ *   - Added wrapper div
+ *   - Added CSS
+ * - 1.0.1-beta3
+ *   - New options: classes
+ *   - Fixed bug with modal position
  */
 
 ;(function ($, window, document, undefined) {
@@ -29,9 +38,16 @@
         showCloseButton: true,
         closeOnOverlay: true,
         removeTimeOut: 400,
+        width: 'auto',
+        widthBreakPoints: {
+            small: '400px',
+            medium: '720px',
+            large: '960px'
+        },
+        classes: '',
         content: '',
         templates: {
-            main: '<div class="octomodal octomodal--open ${effect}"><div class="octomodal__wrapper"><div class="octomodal__container"><div class="octomodal__content">${content}</div>${closeButton}</div></div></div>',
+            main: '<div class="octomodal octomodal--open ${effect}${classes}"><div class="octomodal__wrapper"><div class="octomodal__container"><div class="octomodal__content">${content}</div>${closeButton}</div></div></div>',
             closeButton: '<div class="octomodal__close-button"></div>'
         }
     };
@@ -87,10 +103,6 @@
         if (this.data.status === 'close') {
             var content = this.getTemplate(this.options.content);
             $(document.body).append(content);
-            /* Hack? OMG! */
-            window.setTimeout(function () {
-                //$('.octomodal').addClass('octomodal--open');
-            }, 0);
             this.setPosition();
             this.preventBodyScrolling(true);
             this.data.status = 'open';
@@ -119,6 +131,7 @@
             }, this.options.removeTimeOut);
             this.preventBodyScrolling(false);
             this.data.status = 'close';
+            this.setToDefaults();
             this.removeEvents();
         }
     };
@@ -127,6 +140,7 @@
         var container = $('.octomodal').find('.octomodal__container');
         var containerHeight = container.outerHeight();
         var windowHeight = $(window).height();
+        var bodyScrollTop = $(document.body).scrollTop();
         var styles = {
             marginTop: 30,
             marginBottom: 30
@@ -137,6 +151,8 @@
             styles.marginBottom = 0;
         }
 
+        styles.marginTop += bodyScrollTop;
+
         container.css(styles);
     };
 
@@ -144,17 +160,33 @@
         var template = this.options.templates.main;
         var closeButtonTemplate = '';
         var effect = '';
+        var classes = '';
+        //var width = '';
 
         if (this.options.showCloseButton) {
             closeButtonTemplate = this.options.templates.closeButton;
         }
 
-        if (this.options.effect) {
+        if (this.options.effect && this.options.effect.length > 0) {
             effect = ' octomodal--' + this.options.effect;
         }
 
+        if (this.options.classes && this.options.classes.length > 0) {
+            classes = ' ' + this.options.classes;
+        }
+
+        /*if (this.options.width !== 'auto' && this.options.width.length > 0) {
+            if (typeof this.options.widthBreakPoints[this.options.width] !== undefined) {
+                width = ' style="' + this.options.widthBreakPoints[this.options.width] + '"';
+            } else {
+                width = ' style="' + this.options.width + '"';
+            }
+        }*/
+
         template = template.replace(/\$\{effect}/, effect);
         template = template.replace(/\$\{closeButton}/, closeButtonTemplate);
+        template = template.replace(/\$\{classes}/, classes);
+        //template = template.replace(/\$\{width}/, width);
 
         return template.replace(/\$\{content}/, content);
     };
@@ -181,6 +213,10 @@
 
     OctoModal.prototype.removeEvents = function () {
         $(document.body).off('.OctoModal');
+    };
+
+    OctoModal.prototype.setToDefaults = function () {
+        this.options = defaults;
     };
 
     OctoModal.prototype.preventBodyScrolling = function (prevent) {
