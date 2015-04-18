@@ -3,6 +3,8 @@
  *
  * Copyright 2015 Anton Drobot me@antondrobot.ru.
  *
+ * https://github.com/anton-drobot/octomodal
+ *
  * Licensed under MIT.
  *
  * Options:
