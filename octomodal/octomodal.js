@@ -16,7 +16,7 @@
  *  removeTimeOut: 400 | ...
  *  width: auto | small | medium | large | xLarge ...
  *  widthBreakPoints: {...}
- *  classes: '' | ,,,
+ *  classes: '' | ...
  *  content: ...
  *
  * Events:
@@ -199,7 +199,7 @@
         }
 
         if (this.options.width !== 'auto' && this.options.width.length > 0) {
-            if (typeof this.options.widthBreakPoints[this.options.width] !== 'undefined') {
+            if (this.options.widthBreakPoints[this.options.width] !== undefined) {
                 width = ' style="width: ' + this.options.widthBreakPoints[this.options.width] + ';"';
             } else {
                 width = ' style="width: ' + this.options.width + ';"';
