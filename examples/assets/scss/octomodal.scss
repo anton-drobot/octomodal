@@ -9,6 +9,7 @@
     overflow-y: auto;
     transition: opacity 0.4s 0s ease-out;
     &-fix {
+        position: relative;
         overflow-y: hidden;
     }
     &--open {

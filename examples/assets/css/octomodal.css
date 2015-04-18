@@ -11,6 +11,7 @@
           transition: opacity 0.4s 0s ease-out;
 }
 .octomodal-fix {
+  position: relative;
   overflow-y: hidden;
 }
 .octomodal--open {

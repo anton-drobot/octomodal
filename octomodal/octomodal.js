@@ -140,7 +140,7 @@
         var container = $('.octomodal').find('.octomodal__container');
         var containerHeight = container.outerHeight();
         var windowHeight = $(window).height();
-        var bodyScrollTop = $(document.body).scrollTop();
+        var bodyScrollTop = $(document).scrollTop();
         var styles = {
             marginTop: 30,
             marginBottom: 30
