@@ -1,4 +1,5 @@
 html {
+  height: 100%;
   font-size: 10px;
 }
 
@@ -20,8 +21,8 @@ a {
   border-bottom: 1px solid rgba(54, 140, 218, 0.3);
   color: #368cda;
   text-decoration: none;
-  -webkit-transition: color 0.3s ease, border-color 0.3s ease;
-          transition: color 0.3s ease, border-color 0.3s ease;
+  -webkit-transition: color .3s ease, border-color .3s ease;
+          transition: color .3s ease, border-color .3s ease;
 }
 a:hover {
   border-bottom-color: rgba(47, 100, 182, 0.3);
@@ -82,8 +83,8 @@ a:active {
   line-height: 2rem;
   color: #94821c;
   cursor: pointer;
-  -webkit-transition: background 0.3s 0s linear, color 0.3s 0s linear;
-          transition: background 0.3s 0s linear, color 0.3s 0s linear;
+  -webkit-transition: background .3s 0s linear, color .3s 0s linear;
+          transition: background .3s 0s linear, color .3s 0s linear;
 }
 .b-button:hover {
   background: #ffdd56;

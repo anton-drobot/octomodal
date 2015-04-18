@@ -7,10 +7,11 @@
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
   overflow-y: auto;
-  -webkit-transition: opacity 0.4s 0s ease-out;
-          transition: opacity 0.4s 0s ease-out;
+  -webkit-transition: opacity .4s 0s ease-out;
+          transition: opacity .4s 0s ease-out;
 }
 .octomodal-fix {
+  min-height: 100%;
   position: relative;
   overflow-y: hidden;
 }
@@ -18,8 +19,8 @@
   opacity: 1;
 }
 .octomodal--fade-in-scale.octomodal--open .octomodal__container {
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
+  -webkit-animation-duration: .4s;
+          animation-duration: .4s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-name: fade-in-scale-open;
@@ -28,8 +29,8 @@
           animation-timing-function: ease-out;
 }
 .octomodal--fade-in-scale.octomodal--close .octomodal__container {
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
+  -webkit-animation-duration: .4s;
+          animation-duration: .4s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-name: fade-in-scale-close;
@@ -38,8 +39,8 @@
           animation-timing-function: ease-out;
 }
 .octomodal--slide-in-bottom.octomodal--open .octomodal__container {
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
+  -webkit-animation-duration: .4s;
+          animation-duration: .4s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-name: slide-in-bottom-open;
@@ -48,8 +49,8 @@
           animation-timing-function: ease-out;
 }
 .octomodal--slide-in-bottom.octomodal--close .octomodal__container {
-  -webkit-animation-duration: 0.4s;
-          animation-duration: 0.4s;
+  -webkit-animation-duration: .4s;
+          animation-duration: .4s;
   -webkit-animation-fill-mode: forwards;
           animation-fill-mode: forwards;
   -webkit-animation-name: slide-in-bottom-close;

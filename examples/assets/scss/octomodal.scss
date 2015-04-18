@@ -9,6 +9,7 @@
     overflow-y: auto;
     transition: opacity .4s 0s ease-out;
     &-fix {
+        min-height: 100%;
         position: relative;
         overflow-y: hidden;
     }

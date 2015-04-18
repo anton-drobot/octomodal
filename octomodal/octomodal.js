@@ -12,8 +12,8 @@
  *  showCloseButton: true | false
  *  closeOnOverlay: true | false
  *  removeTimeOut: 400 | ...
- *  //width: auto | small | medium | large ...
- *  //widthBreakPoints: {...}
+ *  width: auto | small | medium | large | xLarge ...
+ *  widthBreakPoints: {...}
  *  classes: '' | ,,,
  *  content: ...
  *
@@ -25,6 +25,9 @@
  *   - Added CSS
  * - 1.0.1-beta3
  *   - New options: classes
+ *   - Fixed bug with modal position
+ * - 1.0.1-beta4
+ *   - New options: width, widthBreakPoints
  *   - Fixed bug with modal position
  */
 
@@ -42,12 +45,13 @@
         widthBreakPoints: {
             small: '400px',
             medium: '720px',
-            large: '960px'
+            large: '960px',
+            xLarge: '1140px'
         },
         classes: '',
         content: '',
         templates: {
-            main: '<div class="octomodal octomodal--open ${effect}${classes}"><div class="octomodal__wrapper"><div class="octomodal__container"><div class="octomodal__content">${content}</div>${closeButton}</div></div></div>',
+            main: '<div class="octomodal octomodal--open ${effect}${classes}"><div class="octomodal__wrapper"><div class="octomodal__container"${width}><div class="octomodal__content">${content}</div>${closeButton}</div></div></div>',
             closeButton: '<div class="octomodal__close-button"></div>'
         }
     };
@@ -161,7 +165,7 @@
         var closeButtonTemplate = '';
         var effect = '';
         var classes = '';
-        //var width = '';
+        var width = '';
 
         if (this.options.showCloseButton) {
             closeButtonTemplate = this.options.templates.closeButton;
@@ -175,18 +179,18 @@
             classes = ' ' + this.options.classes;
         }
 
-        /*if (this.options.width !== 'auto' && this.options.width.length > 0) {
-            if (typeof this.options.widthBreakPoints[this.options.width] !== undefined) {
-                width = ' style="' + this.options.widthBreakPoints[this.options.width] + '"';
+        if (this.options.width !== 'auto' && this.options.width.length > 0) {
+            if (typeof this.options.widthBreakPoints[this.options.width] !== 'undefined') {
+                width = ' style="width: ' + this.options.widthBreakPoints[this.options.width] + ';"';
             } else {
-                width = ' style="' + this.options.width + '"';
+                width = ' style="width: ' + this.options.width + ';"';
             }
-        }*/
+        }
 
         template = template.replace(/\$\{effect}/, effect);
         template = template.replace(/\$\{closeButton}/, closeButtonTemplate);
         template = template.replace(/\$\{classes}/, classes);
-        //template = template.replace(/\$\{width}/, width);
+        template = template.replace(/\$\{width}/, width);
 
         return template.replace(/\$\{content}/, content);
     };
