@@ -19,13 +19,13 @@ p {
 $link-color: #368cda;
 $link-color-hover: #2f64b6;
 $link-color-active: #da2f0d;
-$link-underline-opacity: 0.3;
+$link-underline-opacity: .3;
 
 a {
     border-bottom: 1px solid rgba($link-color, $link-underline-opacity);
     color: $link-color;
     text-decoration: none;
-    transition: color 0.3s ease, border-color 0.3s ease;
+    transition: color .3s ease, border-color .3s ease;
     &:hover {
         border-bottom-color: rgba($link-color-hover, $link-underline-opacity);
         color: $link-color-hover;
@@ -90,7 +90,7 @@ a {
     line-height: 2rem;
     color: #94821c;
     cursor: pointer;
-    transition: background 0.3s 0s linear, color 0.3s 0s linear;
+    transition: background .3s 0s linear, color .3s 0s linear;
     &:hover {
         background: #ffdd56;
         color: lighten(#94821c, 5%);

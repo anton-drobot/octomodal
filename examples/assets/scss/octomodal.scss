@@ -4,10 +4,10 @@
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(0, 0, 0, 0.6);
+    background: rgba(0, 0, 0, .6);
     opacity: 0;
     overflow-y: auto;
-    transition: opacity 0.4s 0s ease-out;
+    transition: opacity .4s 0s ease-out;
     &-fix {
         position: relative;
         overflow-y: hidden;
@@ -22,7 +22,7 @@
     &--fade-in-scale {
         &.octomodal--open {
             .octomodal__container {
-                animation-duration: 0.4s;
+                animation-duration: .4s;
                 animation-fill-mode: forwards;
                 animation-name: fade-in-scale-open;
                 animation-timing-function: ease-out;
@@ -30,7 +30,7 @@
         }
         &.octomodal--close {
             .octomodal__container {
-                animation-duration: 0.4s;
+                animation-duration: .4s;
                 animation-fill-mode: forwards;
                 animation-name: fade-in-scale-close;
                 animation-timing-function: ease-out;
@@ -40,7 +40,7 @@
     &--slide-in-bottom {
         &.octomodal--open {
             .octomodal__container {
-                animation-duration: 0.4s;
+                animation-duration: .4s;
                 animation-fill-mode: forwards;
                 animation-name: slide-in-bottom-open;
                 animation-timing-function: ease-out;
@@ -48,7 +48,7 @@
         }
         &.octomodal--close {
             .octomodal__container {
-                animation-duration: 0.4s;
+                animation-duration: .4s;
                 animation-fill-mode: forwards;
                 animation-name: slide-in-bottom-close;
                 animation-timing-function: ease-out;
@@ -86,7 +86,7 @@
     @keyframes fade-in-scale-open {
         0% {
             opacity: 0;
-            transform: scale3d(0.8, 0.8, 1);
+            transform: scale3d(.8, .8, 1);
         }
         100% {
             opacity: 1;
@@ -100,7 +100,7 @@
         }
         100% {
             opacity: 0;
-            transform: scale3d(0.8, 0.8, 1);
+            transform: scale3d(.8, .8, 1);
         }
     }
 
