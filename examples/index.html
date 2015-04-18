@@ -180,6 +180,26 @@
                 content: $('.page-three').html()
             });
         });
+
+        $(document).on('initialized.OctoModal', function (event) {
+            window.console.log('initialized');
+        });
+
+        $(document).on('opened.OctoModal', function (event) {
+            window.console.log('opened');
+        });
+
+        $(document).on('contentChanged.OctoModal', function (event) {
+            window.console.log('contentChanged');
+        });
+
+        $(document).on('closed.OctoModal', function (event) {
+            window.console.log('closed');
+        });
+
+        $(document).on('positionChanged.OctoModal', function (event) {
+            window.console.log('positionChanged');
+        });
     });
 </script>
 </body>

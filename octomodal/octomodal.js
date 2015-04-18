@@ -1,5 +1,5 @@
 /**
- * jQuery OctoModal 1.0.1-beta3
+ * jQuery OctoModal 1.0.1-beta5
  *
  * Copyright 2015 Anton Drobot me@antondrobot.ru.
  *
@@ -19,6 +19,13 @@
  *  classes: '' | ,,,
  *  content: ...
  *
+ * Events:
+ *  initialized.OctoModal
+ *  opened.OctoModal
+ *  contentChanged.OctoModal
+ *  closed.OctoModal
+ *  positionChanged.OctoModal
+ *
  *  Changelog:
  * - 1.0.1-beta1:
  *   - First version
@@ -31,6 +38,8 @@
  * - 1.0.1-beta4
  *   - New options: width, widthBreakPoints
  *   - Fixed bug with modal position
+ * - 1.0.1-beta5
+ *   - Added triggers
  */
 
 ;(function ($, window, document, undefined) {
@@ -67,6 +76,9 @@
         };
 
         this.init();
+
+        $(document).trigger('initialized.OctoModal');
+
         this.doAction();
     }
 
@@ -113,6 +125,7 @@
             this.preventBodyScrolling(true);
             this.data.status = 'open';
             this.addEvents();
+            $(document).trigger('opened.OctoModal');
         } else {
             this.options.action = 'setContent';
             this.doAction();
@@ -123,6 +136,7 @@
         if (this.data.status === 'open') {
             $('.octomodal').find('.octomodal__content').html(this.options.content);
             this.setPosition();
+            $(document).trigger('contentChanged.OctoModal');
         } else {
             this.options.action = 'open';
             this.doAction();
@@ -139,6 +153,7 @@
             this.data.status = 'close';
             this.setToDefaults();
             this.removeEvents();
+            $(document).trigger('closed.OctoModal');
         }
     };
 
@@ -160,6 +175,8 @@
         styles.marginTop += bodyScrollTop;
 
         container.css(styles);
+
+        $(document).trigger('positionChanged.OctoModal');
     };
 
     OctoModal.prototype.getTemplate = function (content) {
@@ -241,7 +258,7 @@
         if (!data && (typeof options === 'object' || options === undefined)) {
             return $(document.body).data('OctoModal', new OctoModal(options));
         } else if (data && (typeof options === 'object' || options === undefined)) {
-            return data.setOptions(options)
+            return data.setOptions(options);
         }
-    }
+    };
 })(jQuery, window, document);
