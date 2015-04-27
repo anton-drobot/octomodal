@@ -20,6 +20,7 @@
 <main class="b-content">
     <div class="wrapper">
         <button class="b-button js-click" data-action="showModal">Open Modal Window</button>
+        <button class="b-button js-click" data-action="showGallery">Open Gallery</button>
     </div>
 </main>
 <footer class="b-footer">
@@ -154,6 +155,19 @@
             $.octoModal({
                 effect: 'slide-in-bottom',
                 content: $('.page-one').html()
+            });
+        });
+
+        $(document).on('click', '.js-click[data-action="showGallery"]', function (event) {
+            event.preventDefault();
+            $.octoModal({
+                effect: 'slide-in-bottom',
+                galleryList: [
+                    'http://placehold.it/300x300',
+                    'http://placehold.it/320x300',
+                    'http://placehold.it/300x320',
+                    'http://placehold.it/360x360'
+                ]
             });
         });
 

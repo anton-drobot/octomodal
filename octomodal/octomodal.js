@@ -1,5 +1,5 @@
 /**
- * jQuery OctoModal 1.0.1-beta5
+ * jQuery OctoModal 1.0.1-beta6
  *
  * Copyright 2015 Anton Drobot me@antondrobot.ru.
  *
@@ -9,7 +9,7 @@
  *
  * Options:
  *  action: open | close | setContent | setOptions
- *  type: page | gallery
+ *  galleryList: [] | [...]
  *  effect: fade-in-scale | ...
  *  showCloseButton: true | false
  *  closeOnOverlay: true | false
@@ -40,6 +40,9 @@
  *   - Fixed bug with modal position
  * - 1.0.1-beta5
  *   - Added triggers
+ * - 1.0.1-beta6
+ *   - New options: galleryList
+ *   - Remove options: type
  */
 
 ;(function ($, window, document, undefined) {
@@ -47,7 +50,7 @@
 
     var defaults = {
         action: 'open',
-        type: 'page',
+        galleryList: [],
         effect: 'fade-in-scale',
         showCloseButton: true,
         closeOnOverlay: true,
@@ -62,8 +65,10 @@
         classes: '',
         content: '',
         templates: {
-            main: '<div class="octomodal octomodal--open ${effect}${classes}"><div class="octomodal__wrapper"><div class="octomodal__container"${width}><div class="octomodal__content">${content}</div>${closeButton}</div></div></div>',
-            closeButton: '<div class="octomodal__close-button"></div>'
+            main: '<div class="octomodal octomodal--open ${effect}${classes}"><div class="octomodal__wrapper"><div class="octomodal__container"${width}><div class="octomodal__content">${content}</div>${galleryControls}${closeButton}</div></div></div>',
+            closeButton: '<div class="octomodal__close-button"></div>',
+            galleryImage: '<img src="${image}" class="octomodal__gallery-image" alt="">',
+            galleryControls: '<div class="octomodal__controls"><div class="octomodal__controls-item octomodal__controls-item--left"></div><div class="octomodal__controls-item octomodal__controls-item--right"></div></div>'
         }
     };
 
@@ -72,7 +77,9 @@
 
         this.data = {
             status: 'close',
-            closeSelectors: []
+            closeSelectors: [],
+            gallery: this.options.galleryList.length > 0,
+            galleryPosition: 0
         };
 
         this.init();
@@ -119,7 +126,13 @@
 
     OctoModal.prototype.openAction = function () {
         if (this.data.status === 'close') {
+
+            if (this.data.gallery) {
+                this.options.content = this.getImageTemplate(this.options.galleryList[0]);
+            }
+
             var content = this.getTemplate(this.options.content);
+
             $(document.body).append(content);
             this.setPosition();
             this.preventBodyScrolling(true);
@@ -158,6 +171,14 @@
     };
 
     OctoModal.prototype.setPosition = function () {
+        var self = this;
+
+        if (this.data.gallery) {
+            $('.octomodal__gallery-image').on('load', function (event) {
+                self.setPosition();
+            });
+        }
+
         var container = $('.octomodal').find('.octomodal__container');
         var containerHeight = container.outerHeight();
         var windowHeight = $(window).height();
@@ -179,15 +200,25 @@
         $(document).trigger('positionChanged.OctoModal');
     };
 
+    OctoModal.prototype.setGalleryPosition = function (position) {
+        this.options.content = this.getImageTemplate(this.options.galleryList[position]);
+        this.setContentAction();
+    };
+
     OctoModal.prototype.getTemplate = function (content) {
         var template = this.options.templates.main;
         var closeButtonTemplate = '';
+        var galleryControlsTemplate = '';
         var effect = '';
         var classes = '';
         var width = '';
 
         if (this.options.showCloseButton) {
             closeButtonTemplate = this.options.templates.closeButton;
+        }
+
+        if (this.data.gallery) {
+            galleryControlsTemplate = this.options.templates.galleryControls;
         }
 
         if (this.options.effect && this.options.effect.length > 0) {
@@ -208,10 +239,17 @@
 
         template = template.replace(/\$\{effect}/, effect);
         template = template.replace(/\$\{closeButton}/, closeButtonTemplate);
+        template = template.replace(/\$\{galleryControls}/, galleryControlsTemplate);
         template = template.replace(/\$\{classes}/, classes);
         template = template.replace(/\$\{width}/, width);
 
         return template.replace(/\$\{content}/, content);
+    };
+
+    OctoModal.prototype.getImageTemplate = function (image) {
+        var template = this.options.templates.galleryImage;
+
+        return template.replace(/\$\{image}/, image);
     };
 
     OctoModal.prototype.addEvents = function () {
@@ -226,6 +264,28 @@
                         closed = true;
                     }
                 });
+            });
+        }
+
+        if (this.data.gallery) {
+            $(document.body).on('click.OctoModal', '.octomodal__controls-item--left', function (event) {
+                if (self.data.galleryPosition === 0) {
+                    self.data.galleryPosition = self.options.galleryList.length - 1;
+                } else {
+                    self.data.galleryPosition -= 1;
+                }
+
+                self.setGalleryPosition(self.data.galleryPosition);
+            });
+
+            $(document.body).on('click.OctoModal', '.octomodal__controls-item--right', function (event) {
+                if (self.data.galleryPosition === (self.options.galleryList.length - 1)) {
+                    self.data.galleryPosition = 0;
+                } else {
+                    self.data.galleryPosition += 1;
+                }
+
+                self.setGalleryPosition(self.data.galleryPosition);
             });
         }
 

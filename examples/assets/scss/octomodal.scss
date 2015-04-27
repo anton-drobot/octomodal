@@ -71,6 +71,7 @@
         cursor: default;
     }
     &__content {}
+    &__gallery-image {}
     &__close-button {
         width: 50px;
         height: 50px;
@@ -81,6 +82,29 @@
         cursor: pointer;
         &:hover {
             background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#000" d="M37.304 11.282l1.414 1.414-26.022 26.02-1.414-1.413z"></path><path fill="#000" d="M12.696 11.282l26.022 26.02-1.414 1.415-26.022-26.02z"></path></svg>');
+        }
+    }
+    &__controls {}
+    &__controls-item {
+        width: 50px;
+        height: 50px;
+        margin-top: -25px;
+        position: absolute;
+        top: 50%;
+        cursor: pointer;
+        &--left {
+            left: -50px;
+            background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#eee" d="M27.3 34.7L17.6 25l9.7-9.7 1.4 1.4-8.3 8.3 8.3 8.3z"/></svg>');
+            &:hover {
+                background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#fff" d="M27.3 34.7L17.6 25l9.7-9.7 1.4 1.4-8.3 8.3 8.3 8.3z"/></svg>');
+            }
+        }
+        &--right {
+            right: -50px;
+            background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#eee" d="M22.7 34.7l-1.4-1.4 8.3-8.3-8.3-8.3 1.4-1.4 9.7 9.7z"/></svg>');
+            &:hover {
+                background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 50 50" xml:space="preserve"><path fill="#fff" d="M22.7 34.7l-1.4-1.4 8.3-8.3-8.3-8.3 1.4-1.4 9.7 9.7z"/></svg>');
+            }
         }
     }
 
