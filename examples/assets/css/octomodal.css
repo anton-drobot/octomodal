@@ -1,9 +1,10 @@
 .octomodal {
   width: 100%;
   height: 100%;
-  position: absolute;
+  position: fixed;
   top: 0;
   left: 0;
+  z-index: 3000;
   background: rgba(0, 0, 0, 0.6);
   opacity: 0;
   overflow-y: auto;
@@ -17,6 +18,18 @@
 }
 .octomodal--open {
   opacity: 1;
+}
+.octomodal--gallery {
+  text-align: center;
+}
+.octomodal--gallery .octomodal__container {
+  max-height: 80%;
+  display: inline-block;
+  width: auto;
+  border-radius: 0;
+}
+.octomodal--gallery .octomodal__content {
+  padding: 0;
 }
 .octomodal--fade-in-scale.octomodal--open .octomodal__container {
   -webkit-animation-duration: .4s;
@@ -71,6 +84,12 @@
   position: relative;
   background: #fff;
   cursor: default;
+}
+.octomodal__gallery-image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  cursor: pointer;
 }
 .octomodal__close-button {
   width: 50px;
