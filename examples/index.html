@@ -22,10 +22,10 @@
         <button class="b-button js-click" data-action="showModal">Open Modal Window</button>
         <div class="b-gallery">
             Gallery:
-            <a href="http://placehold.it/800x600" data-gallery="octomodal">800x600</a>,
-            <a href="http://placehold.it/600x500" data-gallery="octomodal">600x500</a>,
-            <a href="http://placehold.it/2000x1000" data-gallery="octomodal">2000x1000</a>,
-            <a href="http://placehold.it/860x600" data-gallery="octomodal">860x600</a>.
+            <a href="http://placehold.it/800x600" class="js-click" data-action="showGalleryImage" data-gallery="octomodal">800x600</a>,
+            <a href="http://placehold.it/600x500" class="js-click" data-action="showGalleryImage" data-gallery="octomodal">600x500</a>,
+            <a href="http://placehold.it/2000x1000" class="js-click" data-action="showGalleryImage" data-gallery="octomodal">2000x1000</a>,
+            <a href="http://placehold.it/860x600" class="js-click" data-action="showGalleryImage" data-gallery="octomodal">860x600</a>.
         </div>
     </div>
 </main>
@@ -150,8 +150,16 @@ html {
             });
         });
 
-        $.octoModal({
+        /*$.octoModal({
             gallerySelector: '[data-gallery="octomodal"]'
+        });*/
+
+        $(document).on('click', '.js-click[data-action="showGalleryImage"]', function (event) {
+            event.preventDefault();
+            $.octoModal({
+                galleryPosition: $(event.target).index('[data-gallery="octomodal"]'),
+                gallerySelector: '[data-gallery="octomodal"]'
+            });
         });
 
         $(document).on('click', '.js-click[data-action="showHomeModal"]', function (event) {

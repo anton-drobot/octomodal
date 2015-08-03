@@ -1,5 +1,5 @@
 /**
- * jQuery OctoModal 1.0.1-beta7
+ * jQuery OctoModal 1.0.1-beta8
  *
  * Copyright 2015 Anton Drobot me@antondrobot.ru.
  *
@@ -33,6 +33,8 @@
  *   - Remove options: type
  * - 1.0.1-beta7
  *   - The whole script has been rewritten
+ * - 1.0.1-beta8
+ *   - Fix gallery bugs
  */
 
 ;(function ($, window, document, undefined) {
@@ -41,6 +43,7 @@
     var defaults = {
         action: 'open',
         gallerySelector: '',
+        galleryPosition: 0,
         effect: 'fade-in-scale',
         showCloseButton: true,
         closeOnOverlay: true,
@@ -300,15 +303,8 @@
     };
 
     OctoModal.prototype.setGalleryEvents = function () {
-        var _this = this;
-
-        $(document.body).on('click', this.options.gallerySelector, function (event) {
-            event.preventDefault();
-
-            _this.data.galleryPosition = $(event.target).index(_this.options.gallerySelector);
-
-            _this.showGallery();
-        });
+        this.data.galleryPosition = _this.options.galleryPosition;
+        this.showGallery();
     };
 
     OctoModal.prototype.loadImage = function () {
