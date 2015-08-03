@@ -303,7 +303,7 @@
     };
 
     OctoModal.prototype.setGalleryEvents = function () {
-        this.data.galleryPosition = _this.options.galleryPosition;
+        this.data.galleryPosition = this.options.galleryPosition;
         this.showGallery();
     };
 
